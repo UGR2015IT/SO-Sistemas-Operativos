@@ -65,6 +65,25 @@ int main(int argc, char* argv[]){
 
     }
 
+    //==================//
+    // MODIFICACION ADICIONAL//
+    //==================//
+
+    //Move the offset to the beginning of the file to be written
+    if (lseek(f_write,0,SEEK_SET)<0){
+        perror("\nError in setting the offset to 0 in the file to be written.");
+        exit(-1);
+    }
+
+    //Create a new buffer, with known dimension of 27 bytes
+    char block_number[27];
+    sprintf(block_number, "El número de bloques es %i", i-1);
+
+    //Write the new buffer
+    write(fd2, &block_number, sizeof(block_number));
+    write(fd2, "\n", 1);
+
+
     //Closing the files opened, not necessary
     close(f_write);
     close(f_read);
