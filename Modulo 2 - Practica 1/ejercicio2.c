@@ -65,9 +65,9 @@ int main(int argc, char* argv[]){
 
     }
 
-    //==================//
-    // MODIFICACION ADICIONAL//
-    //==================//
+    //===========================//
+    //  MODIFICACION ADICIONAL   //
+    //===========================//
 
     //Move the offset to the beginning of the file to be written
     if (lseek(f_write,0,SEEK_SET)<0){
@@ -82,6 +82,10 @@ int main(int argc, char* argv[]){
     //Write the new buffer
     write(fd2, &block_number, sizeof(block_number));
     write(fd2, "\n", 1);
+
+    //============================//
+    // END OF MODIFACION ADICIONAL//
+    //============================//
 
 
     //Closing the files opened, not necessary
