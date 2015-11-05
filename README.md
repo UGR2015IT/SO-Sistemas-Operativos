@@ -10,4 +10,5 @@ However, if you reader were to find any error, please do not hesitate and contac
 
 Enjoy your time at UGR and in Granada, especially if you're in Erasmus.<p><p><p>
 
-<i>Davide Gallitelli, Informatics & Automation Engineering student @ Politecnico di Bari, Italy</i>
+<i>Davide Gallitelli </i>
+>Informatics & Automation Engineering student @ Politecnico di Bari, Italy
