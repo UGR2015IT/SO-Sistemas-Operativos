@@ -17,7 +17,6 @@ En segundo lugar (una vez creados los archivos) hay que crear un segundo program
 #include<fcntl.h>		//Needed for open
 #include<stdio.h>
 #include<errno.h>
-#include<stdlib.h>
 
 
 int main(int argc, char *argv[])
