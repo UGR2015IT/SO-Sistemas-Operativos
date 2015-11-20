@@ -19,7 +19,7 @@ if( (pid=fork())<0) {
 	exit(-1);
 }
 else if(pid==0) {  //proceso hijo ejecutando el programa
-	if( (execl("/usr/bin/ldd","ldd","./tarea5")<0)) {
+	if( (execl("/usr/bin/ldd","ldd","./tarea5", NULL)<0)) {
 		perror("\nError en el execl");
 		exit(-1);
 	}
