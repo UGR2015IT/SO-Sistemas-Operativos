@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <string.h>
@@ -9,7 +10,7 @@ int main(int argc, char *argv[]){
 		printf("Error: necesito de 3 argumentos. \n nombreprog orden \"</>\" archivo \n");
 		return -1;
 	} else {
-		//exec del orden insertado por pantalla
+		// Declaracion y incializacion de variables
 		char* orden = argv[1];
 		char* redireccion = argv[2];
 		char* filename = argv[3];
@@ -18,27 +19,30 @@ int main(int argc, char *argv[]){
 		
 		if (strcmp(redireccion,"<")==0){
 			//rediccionar desde el archivo
-			close (1);
-			if (fcntl(fd, F_DUPFD, 1) == -1){
+			close (STDIN_FILENO);
+			if (fcntl(fd, F_DUPFD, STDIN_FILENO) == -1){
 				perror("Fallo en fcntl desde el archivo");
 				return -1;
 			}
 		} else if (strcmp(redireccion,">")==0){
 			//redireccionar hacia el archivo
-			close(fd);
-			if (fcntl(1, F_DUPFD, fd) == -1){
+			close(STDOUT_FILENO);
+			if (fcntl(fd, F_DUPFD, STDOUT_FILENO) == -1){
 				perror("Fallo en fcntl hacia el archivo");
 				return -1;
 			}
 		} else {
+			//Si no se le han pasado los parámetros correctos muestra un mensaje de ayuda
 			printf("El segundo argumento tiene que ser < (desde) o > (hacia). Reiniciar el programa.\n");
 			return -1;
 		}
-		printf ("Redireccionamiento hecho, vuelvo a ejecutar el orden %s \n",orden);
-		if (execl(orden, "", NULL) == -1) {
+		//Ejecutar la orden
+		if (execlp(orden, "", NULL) < 0) {
 			perror("Error en el execl de el orden");
 			return -1;
 		}
+		// Cerrar el fichero y devolver 0
+		close(fd);
 		return 0;
 	}
 
